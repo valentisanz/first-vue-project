@@ -4,21 +4,27 @@
       <router-link to="/">
         <div class="nav_logo">PosteD</div>
       </router-link>
-      <div class="nav_user">{{ user.username }}</div>
+      <div class="nav_user" v-if="user">
+        {{ user.username }}
+      </div>
     </nav>
     <router-view />
   </div>
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { computed } from "vue";
+
 export default {
   name: "App",
 
-  data() {
+  setup() {
+    const store = useStore();
+    const user = computed(() => store.state.User.user);
+
     return {
-      user: {
-        username: "",
-      },
+      user,
     };
   },
 };
