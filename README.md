@@ -1,5 +1,5 @@
 # first-vue
-
+Vue learning playground
 ## Project setup
 ```
 npm install
