@@ -2,7 +2,11 @@
   <div class="user-profile">
     <div class="user-profile_user-panel">
       <h1 class="user-profile_username">@{{ state.user.username }}</h1>
-      <div class="user-profile_admin-badge" v-if="state.user.admin">Admin</div>
+      <router-link to="/admin">
+        <div class="user-profile_admin-badge" v-if="state.user.admin">
+          Admin
+        </div>
+      </router-link>
       <div class="user-profile_followers-count">
         <strong>Followers: </strong>{{ state.followers }}
       </div>
@@ -70,7 +74,7 @@ export default {
         { value: "instant", name: "Instant Post" },
       ],
       followers: 0,
-      user: users[userId.value - 1] || users[0]
+      user: users[userId.value - 1] || users[0],
     });
     //computed
     const newPostCharacterCounter = computed(() => state.newPostBody.length);

@@ -5,9 +5,10 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-
+    border-radius: 5px;
+    margin-right: auto;
+    padding: 0 10px;
     :hover {
-        color: gray;
         transition: 0.5s;
         font-style: italic;
     }

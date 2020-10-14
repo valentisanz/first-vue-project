@@ -4,7 +4,7 @@ import {
 } from 'vue-router'
 import Home from '../views/Home.vue'
 import UserProfile from '../views/UserProfile.vue'
-import UserProfile from '../views/Admin.vue'
+import Admin from '../views/Admin.vue'
 
 const routes = [{
   path: '/',
@@ -17,8 +17,10 @@ const routes = [{
 }, {
   path: '/admin',
   name: 'Admin',
-  component: Admin
-
+  component: Admin,
+  meta: {
+    requiresAdmin: true
+  }
 }]
 
 const router = createRouter({
@@ -26,8 +28,13 @@ const router = createRouter({
   routes
 })
 router.beforeEach(async (to, from, next) => {
-  const isAdmin = true;
-  const requiredAdmin = to.matched.some(record => record.meta.requiredAdmin)
+  const isAdmin = false
+  const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin)
+  if (requiresAdmin && !isAdmin) next({
+    name: 'Home'
+  });
+  else next()
+
 })
 
 export default router
